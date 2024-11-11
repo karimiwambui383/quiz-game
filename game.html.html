@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Quiz Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>JavaScript Quiz Game</h1>
+<div id="quiz"></div>
+<button id="submit">Submit Answers</button>
+<div id="result"></div>
+
+<script>
+    const questions = [
+        {
+            question: "1. What does 'var' declare in JavaScript?",
+            options: ["A variable", "A function", "An object", "A class"],
+            answer: "A variable"
+        },
+        {
+            question: "2. Which of the following is a JavaScript data type?",
+            options: ["String", "Boolean", "Number", "All of the above"],
+            answer: "All of the above"
+        },
+        {
+            question: "3. What is the correct syntax to create a function in JavaScript?",
+            options: ["function myFunction()", "function:myFunction()", "myFunction()", "create myFunction()"],
+            answer: "function myFunction()"
+        },
+        {
+            question: "4. How do you add a comment in JavaScript?",
+            options: ["// This is a comment", "<!-- This is a comment -->", "# This is a comment", "/* This is a comment */"],
+            answer: "// This is a comment"
+        },
+        {
+            question: "5. What is the output of 2 + '2' in JavaScript?",
+            options: ["4", "22", "Error", "undefined"],
+            answer: "22"
+        },
+        {
+            question: "6. Which operator is used to assign a value to a variable?",
+            options: ["=", "==", "===", "=>"],
+            answer: "="
+        },
+        {
+            question: "7. What will the following code return: Boolean(0)?",
+            options: ["true", "false", "undefined", "null"],
+            answer: "false"
+        },
+        {
+            question: "8. How can you create an array in JavaScript?",
+            options: ["var myArray = [];", "var myArray = new Array();", "Both of the above", "None of the above"],
+            answer: "Both of the above"
+        },
+        {
+            question: "9. What is the purpose of the 'this' keyword in JavaScript?",
+            options: ["Refers to the global object", "Refers to the current object", "Refers to the previous object", "None of the above"],
+            answer: "Refers to the current object"
+        },
+        {
+            question: "10. How do you call a function named 'myFunction'?",
+            options: ["myFunction;", "call myFunction();", "myFunction();", "call myFunction;"],
+            answer: "myFunction();"
+        }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    const resultContainer = document.getElementById('result');
+
+    function buildQuiz() {
+        questions.forEach((currentQuestion, questionIndex) => {
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question');
+            questionElement.innerHTML = `
+                <p>${currentQuestion.question}</p>
+                ${currentQuestion.options.map((option, index) => `
+                    <label>
+                        <input type="radio" name="question${questionIndex}" value="${option}">
+                        ${option}
+                    </label>
+                `).join('')}
+            `;
+            quizContainer.appendChild(questionElement);
+        });
+    }
+
+    function showResults() {
+        const answerContainers = quizContainer.querySelectorAll('.question');
+        let score = 0;
+
+        questions.forEach((currentQuestion, questionIndex) => {
+            const answerContainer = answerContainers[questionIndex];
+            const selector = `input[name=question${questionIndex}]:checked`;
+            const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+            if (userAnswer === currentQuestion.answer) {
+                score++;
+            }
+        });
+
+        resultContainer.innerHTML = `You scored ${score} out of ${questions.length}.`;
+    }
+
+    buildQuiz();
+
+    document.getElementById('submit').addEventListener('click', showResults);
+</script>
+
+</body>
+</html>
