@@ -38,7 +38,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact Information
 If you have any questions or feedback, feel free to reach out:
-- Email: your.email@example.com
-- GitHub: [yourusername](https://github.com/yourusername)
+- Email: your.vwambui108@gmail.com
+- GitHub: [karimiwambui383](https://github.com/karimiwambui383)
 
 Thank you for checking out the JavaScript Basics Quiz Game! Enjoy testing your knowledge!
